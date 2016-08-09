@@ -1,0 +1,40 @@
+group 'com.qinjiangbo'
+version '1.0-SNAPSHOT'
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'org.akhikhl.gretty:gretty:+'
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    //mavenCentral()
+    maven {
+        url "http://repo.maven.apache.org/maven2"
+    }
+}
+
+dependencies {
+    testCompile (
+            'junit:junit:4.11'
+    )
+}
+
+gretty {
+    httpPort = 8080
+    httpsPort = 8081
+    contextPath = '/GradleWeb'
+    // 'jetty7', 'jetty8', 'jetty9', 'tomcat7', 'tomcat8'
+    servletContainer = 'tomcat8'
+}
